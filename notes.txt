@@ -1,0 +1,9 @@
+# ISSUES:
+#
+# * LD_LIBRARY_PATH needs to be set for development work?
+#
+# * double-bits doesn't work with math/nan, math/inf, or math/-inf
+#
+# POSSIBILITIES:
+#
+# * support more signed things, e.g. int32_t, int/s64
