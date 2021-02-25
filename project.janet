@@ -85,8 +85,3 @@
         ["janet" "-e" (string "(os/cd \"" src-root "\")"
                               "(import spork/netrepl)"
                               "(netrepl/server)")] :p))
-
-(phony "judge" ["build"]
-       (os/execute ["jg-verdict"
-                    "-p" proj-root
-                    "-s" src-root] :p))
