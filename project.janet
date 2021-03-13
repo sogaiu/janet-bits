@@ -1,7 +1,10 @@
-(import ./janet-bits/vendor/path)
+(import ./support/path)
+
+(def proj-name
+  "janet-bits")
 
 (declare-project
-  :name "bits"
+  :name proj-name
   :description "Janet bit patterns"
   :url "https://github.com/sogaiu/janet-bits"
   :repo "git+https://github.com/sogaiu/janet-bits")
@@ -10,7 +13,7 @@
   (os/cwd))
 
 (def proj-dir-name
-  "janet-bits")
+  proj-name)
 
 (def src-root
   (path/join proj-root proj-dir-name))
@@ -23,7 +26,7 @@
   :source [(path/join src-root "_bits.c")])
 
 (declare-source
-  :source [src-root])
+  :source [proj-dir-name])
 
 # XXX: to get .so file and friends into janet-bits subdirectory:
 #
@@ -41,7 +44,7 @@
 # XXX: depend on build?
 (phony "install" []
        # tweak manifest file
-       (def m (parse (slurp (find-manifest "bits"))))
+       (def m (parse (slurp (find-manifest proj-name))))
        (def paths (filter (fn [path]
                             # XXX: good enough?
                             (not (string/has-suffix? proj-dir-name
@@ -54,7 +57,7 @@
                                                      path))
                                (m :paths)))
        # modify manifest file
-       (spit (find-manifest "bits")
+       (spit (find-manifest proj-name)
              (string/format "%j"
                             (table/to-struct
                              (put (table ;(kvs m)) :paths
