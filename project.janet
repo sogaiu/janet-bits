@@ -1,13 +1,13 @@
 (import ./support/path)
 
-(def proj-name
-  "janet-bits")
-
 (declare-project
-  :name proj-name
+  :name "janet-bits" # XXX: be nice to automated processing
   :description "Janet bit patterns"
   :url "https://github.com/sogaiu/janet-bits"
   :repo "git+https://github.com/sogaiu/janet-bits")
+
+(def proj-name
+  "janet-bits")
 
 (def proj-root
   (os/cwd))
